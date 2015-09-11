@@ -17,7 +17,7 @@
   "homepage": "https://github.com/attn/hook-manager#readme",
   "main": "index.js",
   "scripts": {
-    "prepublish": "babel src/index.js -out-file index.js",
+    "prepublish": "babel src/index.js --out-file index.js",
     "pretest": "standard",
     "test": "mocha"
   },
