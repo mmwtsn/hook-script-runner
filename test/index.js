@@ -1,7 +1,7 @@
 /* global describe, it */
 
 import assert from 'assert'
-import index from '../lib'
+import index from '../src'
 
 describe('hook script manager', () => {
   describe('index', () => {
