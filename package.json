@@ -1,0 +1,30 @@
+{
+  "name": "hook-script-manager",
+  "version": "0.0.0",
+  "description": "Manage your Git hook scripts with npm",
+  "license": "MIT",
+  "author": {
+    "name": "M. Maxwell Watson",
+    "email": "hi@mmwtsn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/attn/hook-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/attn/hook-manager/issues"
+  },
+  "homepage": "https://github.com/attn/hook-manager#readme",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "babel src/index.js -out-file index.js",
+    "pretest": "standard",
+    "test": "mocha"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "mocha": "^2.2.5",
+    "standard": "^5.1.0"
+  }
+}
