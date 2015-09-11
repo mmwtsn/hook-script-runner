@@ -6,7 +6,7 @@ import index from '../src'
 describe('hook script manager', () => {
   describe('index', () => {
     it('exports an object', done => {
-      assert(typeof index === 'object')
+      assert.equal(typeof index, 'object')
 
       done()
     })
