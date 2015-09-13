@@ -17,11 +17,11 @@ export default class Runner {
   /**
    * Constructs an instance of Runner
    *
-   * @param {string} [hook=pre-commit] - Name of hook script
+   * @param {string} hook - Name of hook script
    * @constructs Runner
    */
 
-  constructor (hook = 'pre-commit') {
+  constructor (hook) {
     this.hook = this._validate(hook)
   }
 
@@ -57,6 +57,10 @@ export default class Runner {
    */
 
   _validate (hook) {
+    if (typeof hook === 'undefined') {
+      throw new Error('Missing required hook argument')
+    }
+
     if (hooks.indexOf(hook) === -1) {
       throw new Error(`"${hook}" is not valid hook name`)
     }

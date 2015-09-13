@@ -7,7 +7,7 @@ import Runner from '../src/Runner'
 
 describe('Runner', () => {
   it('is a class', done => {
-    const runner = new Runner()
+    const runner = new Runner('update')
 
     assert.strictEqual(typeof Runner, 'function')
     assert.strictEqual(runner.constructor, Runner)
@@ -16,18 +16,18 @@ describe('Runner', () => {
   })
 
   describe('#hook', () => {
-    it('defaults to "pre-commit"', done => {
-      const runner = new Runner()
-
-      assert.strictEqual(runner.hook, 'pre-commit')
-
-      done()
-    })
-
     it('holds the target hook script name', done => {
       const runner = new Runner('commit-msg')
 
       assert.strictEqual(runner.hook, 'commit-msg')
+
+      done()
+    })
+
+    it('throws when not supplied', done => {
+      assert.throws(() => {
+        return new Runner()
+      }, /Missing required/)
 
       done()
     })
@@ -46,7 +46,7 @@ describe('Runner', () => {
   describe('#run', () => {
     it('calls child_process.spawn once', done => {
       const stub = sinon.stub(child_process, 'spawn')
-      const runner = new Runner()
+      const runner = new Runner('update')
 
       runner.run()
       assert(stub.calledOnce)
