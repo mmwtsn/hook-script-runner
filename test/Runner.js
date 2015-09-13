@@ -15,6 +15,16 @@ describe('Runner', () => {
     done()
   })
 
+  describe('#hook', () => {
+    it('holds the target hook script name', done => {
+      const runner = new Runner('commit-msg')
+
+      assert.strictEqual(runner.hook, 'commit-msg')
+
+      done()
+    })
+  })
+
   describe('#run', () => {
     it('calls child_process.spawn once', done => {
       const stub = sinon.stub(child_process, 'spawn')
