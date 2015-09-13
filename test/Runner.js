@@ -16,6 +16,14 @@ describe('Runner', () => {
   })
 
   describe('#hook', () => {
+    it('defaults to "pre-commit"', done => {
+      const runner = new Runner()
+
+      assert.strictEqual(runner.hook, 'pre-commit')
+
+      done()
+    })
+
     it('holds the target hook script name', done => {
       const runner = new Runner('commit-msg')
 

@@ -9,7 +9,7 @@ import {spawn} from 'child_process'
  */
 
 export default class Runner {
-  constructor (hook) {
+  constructor (hook = 'pre-commit') {
     this.hook = hook
   }
 
