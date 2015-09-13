@@ -31,6 +31,16 @@ describe('Runner', () => {
 
       done()
     })
+
+    it('throws when supplied hook is not valid', done => {
+      ['precommit', 'pre_commit', 'Commit'].map(hook => {
+        assert.throws(() => {
+          return new Runner(hook)
+        }, /not valid hook name/)
+      })
+
+      done()
+    })
   })
 
   describe('#run', () => {
