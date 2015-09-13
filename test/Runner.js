@@ -15,29 +15,29 @@ describe('Runner', () => {
     done()
   })
 
+  it('throws without a hook', done => {
+    assert.throws(() => {
+      return new Runner()
+    }, /Missing required/)
+
+    done()
+  })
+
+  it('throws when hook is not a valid', done => {
+    ['precommit', 'pre_commit', 'Commit'].map(hook => {
+      assert.throws(() => {
+        return new Runner(hook)
+      }, /not valid hook name/)
+    })
+
+    done()
+  })
+
   describe('#hook', () => {
     it('holds the target hook script name', done => {
       const runner = new Runner('commit-msg')
 
       assert.strictEqual(runner.hook, 'commit-msg')
-
-      done()
-    })
-
-    it('throws when not supplied', done => {
-      assert.throws(() => {
-        return new Runner()
-      }, /Missing required/)
-
-      done()
-    })
-
-    it('throws when supplied hook is not valid', done => {
-      ['precommit', 'pre_commit', 'Commit'].map(hook => {
-        assert.throws(() => {
-          return new Runner(hook)
-        }, /not valid hook name/)
-      })
 
       done()
     })
