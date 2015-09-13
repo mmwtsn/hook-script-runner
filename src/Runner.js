@@ -6,13 +6,39 @@ import {spawn} from 'child_process'
 import hooks from './hooks'
 
 /**
- * Module exports
+ * Hook script runner class
+ *
+ * @class Runner
+ * @classdesc Automatically runs a specified hook script once instantiated from
+ * within a Git hook script ($GIT_DIR/hooks/<hook-name>). Can be used elsewhere
  */
 
 export default class Runner {
+  /**
+   * Constructs an instance of Runner
+   *
+   * @param {string} [hook=pre-commit] - Name of hook script
+   * @constructs Runner
+   */
+
   constructor (hook = 'pre-commit') {
     this.hook = this._validate(hook)
   }
+
+  /**
+   * Asynchronously runs "npm test -s" when this Runner's hook script is called
+   * by Git by spawning a child process
+   *
+   * Parent process shares readable and writable stream objects with the child
+   * process to preserve child process' STDOUT formatting
+   *
+   * For more see {@link
+   * https://nodejs.org/api/child_process.html#child_process_options_stdio |
+   * child_process options.stdio "inherit"}
+   *
+   * @method run
+   * @public
+   */
 
   run () {
     spawn('npm', ['test', '-s'], {
