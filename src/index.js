@@ -2,4 +2,5 @@
  * Module exports
  */
 
-export default {}
+export default class Runner {
+}

@@ -1,14 +1,15 @@
 /* global describe, it */
 
 import assert from 'assert'
-import index from '../src'
+import Runner from '../src'
 
-describe('hook script manager', () => {
-  describe('index', () => {
-    it('exports an object', done => {
-      assert.equal(typeof index, 'object')
+describe('Runner', () => {
+  it('is a class', done => {
+    const runner = new Runner()
 
-      done()
-    })
+    assert.strictEqual(typeof Runner, 'function')
+    assert.strictEqual(runner.constructor, Runner)
+
+    done()
   })
 })
