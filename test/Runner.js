@@ -3,7 +3,7 @@
 import assert from 'assert'
 import child_process from 'child_process'
 import sinon from 'sinon'
-import Runner from '../src'
+import Runner from '../src/Runner'
 
 describe('Runner', () => {
   it('is a class', done => {
