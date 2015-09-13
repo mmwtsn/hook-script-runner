@@ -18,11 +18,13 @@ export default class Runner {
    * Constructs an instance of Runner
    *
    * @param {string} hook - Name of hook script
+   * @param {string} [config=../../package.json] - Path to target JSON config
    * @constructs Runner
    */
 
-  constructor (hook) {
+  constructor (hook, config = '../../package.json') {
     this.hook = this._validate(hook)
+    this.config = config
   }
 
   /**
