@@ -15,7 +15,7 @@ describe('Runner', () => {
     done()
   })
 
-  it('throws without a hook', done => {
+  it('requires a hook', done => {
     assert.throws(() => {
       return new Runner()
     }, /Missing required/)
@@ -23,7 +23,7 @@ describe('Runner', () => {
     done()
   })
 
-  it('throws when hook is not a valid', done => {
+  it('validates its hook', done => {
     ['precommit', 'pre_commit', 'Commit'].map(hook => {
       assert.throws(() => {
         return new Runner(hook)
