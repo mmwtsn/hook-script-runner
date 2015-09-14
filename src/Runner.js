@@ -96,8 +96,6 @@ export default class Runner {
       throw new Error(`Expected "hooks[\'${hook}\']" key missing from config`)
     }
 
-    const targets = parsed.hooks[hook]
-
-    return targets
+    return parsed.hooks[hook]
   }
 }
