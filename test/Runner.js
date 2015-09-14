@@ -5,9 +5,11 @@ import child_process from 'child_process'
 import sinon from 'sinon'
 import Runner from '../src/Runner'
 
+const configPath = './test/fixtures/config.json'
+
 describe('Runner', () => {
   it('is a class', done => {
-    const runner = new Runner('update')
+    const runner = new Runner('update', configPath)
 
     assert.strictEqual(typeof Runner, 'function')
     assert.strictEqual(runner.constructor, Runner)
@@ -26,7 +28,7 @@ describe('Runner', () => {
   it('validates its hook', done => {
     ['precommit', 'pre_commit', 'Commit'].map(hook => {
       assert.throws(() => {
-        return new Runner(hook)
+        return new Runner(hook, configPath)
       }, /not valid hook name/)
     })
 
@@ -35,7 +37,7 @@ describe('Runner', () => {
 
   describe('#hook', () => {
     it('holds the target hook script name', done => {
-      const runner = new Runner('commit-msg')
+      const runner = new Runner('commit-msg', configPath)
 
       assert.strictEqual(runner.hook, 'commit-msg')
 
@@ -46,7 +48,7 @@ describe('Runner', () => {
   describe('#run', () => {
     it('calls child_process.spawn once', done => {
       const stub = sinon.stub(child_process, 'spawn')
-      const runner = new Runner('update')
+      const runner = new Runner('update', configPath)
 
       runner.run()
       assert(stub.calledOnce)
