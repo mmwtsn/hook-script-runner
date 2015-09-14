@@ -5,11 +5,12 @@ import child_process from 'child_process'
 import sinon from 'sinon'
 import Runner from '../src/Runner'
 
-const configPath = './test/fixtures/config.json'
+const hook = 'pre-commit'
+const config = './test/fixtures/config.json'
 
 describe('Runner', () => {
   it('is a class', done => {
-    const runner = new Runner('pre-commit', configPath)
+    const runner = new Runner(hook, config)
 
     assert.strictEqual(typeof Runner, 'function')
     assert.strictEqual(runner.constructor, Runner)
@@ -28,7 +29,7 @@ describe('Runner', () => {
   it('validates its hook', done => {
     ['precommit', 'pre_commit', 'Commit'].map(hook => {
       assert.throws(() => {
-        return new Runner(hook, configPath)
+        return new Runner(hook, config)
       }, /not valid hook name/)
     })
 
@@ -37,11 +38,11 @@ describe('Runner', () => {
 
   it('validates its config when provided', done => {
     assert.throws(() => {
-      return new Runner('pre-commit', 'does-not-exist.json')
+      return new Runner(hook, 'does-not-exist.json')
     }, /no such file/)
 
     assert.throws(() => {
-      return new Runner('pre-commit', './test/Runner.js')
+      return new Runner(hook, './test/Runner.js')
     }, SyntaxError)
 
     done()
@@ -49,9 +50,9 @@ describe('Runner', () => {
 
   describe('#hook', () => {
     it('holds the target hook script name', done => {
-      const runner = new Runner('pre-commit', configPath)
+      const runner = new Runner(hook, config)
 
-      assert.strictEqual(runner.hook, 'pre-commit')
+      assert.strictEqual(runner.hook, hook)
 
       done()
     })
@@ -60,7 +61,7 @@ describe('Runner', () => {
   describe('#run', () => {
     it('calls child_process.spawn once', done => {
       const stub = sinon.stub(child_process, 'spawn')
-      const runner = new Runner('pre-commit', configPath)
+      const runner = new Runner(hook, config)
 
       runner.run()
       assert(stub.calledOnce)
