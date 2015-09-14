@@ -2,6 +2,7 @@
  * Module dependencies
  */
 
+import fs from 'fs'
 import {spawn} from 'child_process'
 import hooks from './hooks'
 
@@ -24,7 +25,7 @@ export default class Runner {
 
   constructor (hook, config = '../../package.json') {
     this.hook = this._validate(hook)
-    this.config = config
+    this.config = this._parse(config)
   }
 
   /**
@@ -68,5 +69,24 @@ export default class Runner {
     }
 
     return hook
+  }
+
+  /**
+   * Parses default or provided JSON config for hooks
+   *
+   * @method _parse
+   * @param {string} config - JSON config file to parse
+   * @throws {MissingConfigError} Thrown if config file does not exist
+   * @throws {SyntaxError} Thrown if config is not valid JSON
+   * @throws {MalformedConfigError} Thrown if config is malformed
+   * @returns {string[]} Commands to be parsed to child_process.spawn()
+   * @protected
+   */
+
+  _parse (config) {
+    const file = fs.readFileSync(config, 'utf8')
+    const parsed = JSON.parse(file)
+
+    return parsed.hooks[this.hook]
   }
 }
