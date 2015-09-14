@@ -15,10 +15,10 @@
     "url": "https://github.com/attn/hook-manager/issues"
   },
   "homepage": "https://github.com/attn/hook-manager#readme",
-  "main": "index.js",
+  "main": "lib/Runner.js",
   "scripts": {
-    "prepublish": "babel src/index.js --out-file index.js",
-    "pretest": "standard",
+    "prepublish": "babel src --out-dir lib",
+    "pretest": "standard src",
     "test": "mocha"
   },
   "dependencies": {},
