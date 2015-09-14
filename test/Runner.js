@@ -35,6 +35,18 @@ describe('Runner', () => {
     done()
   })
 
+  it('validates its config when provided', done => {
+    assert.throws(() => {
+      return new Runner('pre-commit', 'does-not-exist.json')
+    }, /no such file/)
+
+    assert.throws(() => {
+      return new Runner('pre-commit', './test/Runner.js')
+    }, SyntaxError)
+
+    done()
+  })
+
   describe('#hook', () => {
     it('holds the target hook script name', done => {
       const runner = new Runner('commit-msg', configPath)
