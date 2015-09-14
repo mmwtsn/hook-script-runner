@@ -25,7 +25,7 @@ export default class Runner {
 
   constructor (hook, config = '../../package.json') {
     this.hook = this._validate(hook)
-    this.config = this._parse(config)
+    this.targets = this._parse(config)
   }
 
   /**
