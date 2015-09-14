@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+/**
+ * This file was built by the Hook Runner module.
+ *
+ * It is symlinked to this location from inside that package. For more,
+ * see Hook Runner's README inside your project's node_modules/ directory
+ * or on GitHub:
+ *
+ * https://github.com/mmwtsn/hook-runner#readme
+ */
+
+import Runner from 'hook-runner'
+
+new Runner(__filename).run()
