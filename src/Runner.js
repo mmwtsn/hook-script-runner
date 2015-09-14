@@ -84,9 +84,20 @@ export default class Runner {
    */
 
   _parse (config) {
+    const hook = this.hook
     const file = fs.readFileSync(config, 'utf8')
     const parsed = JSON.parse(file)
 
-    return parsed.hooks[this.hook]
+    if (parsed.hooks === undefined) {
+      throw new Error(`Expected "hooks" key missing from config`)
+    }
+
+    if (parsed.hooks[hook] === undefined) {
+      throw new Error(`Expected "hooks[\'${hook}\']" key missing from config`)
+    }
+
+    const targets = parsed.hooks[hook]
+
+    return targets
   }
 }
