@@ -60,6 +60,16 @@ describe('Runner', () => {
     it('holds the target hook script name', done => {
       const runner = new Runner(hook, config)
 
+      assert.deepEqual(runner.targets, ['npm', ['test', '-s']])
+
+      done()
+    })
+  })
+
+  describe('#targets', () => {
+    it('hold the parsed target hook script executables', done => {
+      const runner = new Runner(hook, config)
+
       assert.strictEqual(runner.hook, hook)
 
       done()
