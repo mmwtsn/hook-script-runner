@@ -6,7 +6,7 @@ import sinon from 'sinon'
 import Runner from '../src/Runner'
 
 const hook = 'pre-commit'
-const config = './test/fixtures/config.json'
+const config = './test/fixtures/configs/package.json'
 
 describe('Runner', () => {
   it('is a class', done => {
@@ -46,11 +46,11 @@ describe('Runner', () => {
     }, SyntaxError)
 
     assert.throws(() => {
-      return new Runner(hook, './test/fixtures/missing-hook-config.json')
+      return new Runner(hook, './test/fixtures/configs/missing-hook.json')
     }, /missing/)
 
     assert.throws(() => {
-      return new Runner(hook, './test/fixtures/missing-hooks-config.json')
+      return new Runner(hook, './test/fixtures/configs/missing-hooks.json')
     }, /missing/)
 
     done()
