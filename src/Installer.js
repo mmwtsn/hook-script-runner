@@ -24,6 +24,14 @@ export default class Installer {
   }
 
   /**
+   * Installs hook runner by symlinking your local $GIT_DIR/hooks to ours and
+   * backing up your existing $GIT_DIR/hooks directory if it exists
+   *
+   * @param {string} [path=../lib/hooks] - Path to new hooks directory
+   */
+  install (path = '../lib/hooks') {}
+
+  /**
    * Returns installation state of provided $GIT_DIR
    *
    * Internally constructs a call to `fs.lstat()` with the provided path and

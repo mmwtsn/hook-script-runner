@@ -48,4 +48,11 @@ describe('Installer', () => {
       done()
     })
   })
+
+  describe('#install', () => {
+    it('calls fs.symlinkSync() when not already symlinked')
+    it('does not call fs.symlinkSync() when already symlinked')
+    it('calls fs.renameSync() when not already saved or symlinked')
+    it('does not call fs.renameSync() when already saved or symlinked')
+  })
 })
