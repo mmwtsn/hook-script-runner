@@ -5,6 +5,8 @@ import fs from 'fs'
 import sinon from 'sinon'
 import Installer from '../src/Installer'
 
+const basePath = './test/fixtures/directories'
+
 describe('Installer', () => {
   it('is a class', done => {
     const installer = new Installer()
@@ -17,7 +19,7 @@ describe('Installer', () => {
 
   describe('#symlinked', () => {
     it('is true when hooks/ is a symlink', done => {
-      const installer = new Installer('./test/fixtures/directories/c')
+      const installer = new Installer(`${basePath}/c`)
 
       assert(installer.symlinked)
 
@@ -25,7 +27,7 @@ describe('Installer', () => {
     })
 
     it('is false when hooks/ is not a symlink', done => {
-      const installer = new Installer('./test/fixtures/directories/a')
+      const installer = new Installer(`${basePath}/a`)
 
       assert(!installer.symlinked)
 
@@ -35,7 +37,7 @@ describe('Installer', () => {
 
   describe('#saved', () => {
     it('is true when hooks.save/ exists', done => {
-      const installer = new Installer('./test/fixtures/directories/c')
+      const installer = new Installer(`${basePath}/a`)
 
       assert(installer.saved)
 
@@ -43,7 +45,7 @@ describe('Installer', () => {
     })
 
     it('is false when hooks.save/ does not', done => {
-      const installer = new Installer('./test/fixtures/directories/a')
+      const installer = new Installer(`${basePath}/a`)
 
       assert(!installer.saved)
 
@@ -70,7 +72,7 @@ describe('Installer', () => {
     })
 
     it('calls fs.symlinkSync() when not already symlinked', done => {
-      const installer = new Installer('./test/fixtures/directories/a')
+      const installer = new Installer(`${basePath}/a`)
 
       installer.install()
       assert(symlinkSync.calledOnce)
@@ -79,7 +81,7 @@ describe('Installer', () => {
     })
 
     it('does not call fs.symlinkSync() when already symlinked', done => {
-      const installer = new Installer('./test/fixtures/directories/c')
+      const installer = new Installer(`${basePath}/c`)
 
       installer.install()
       assert(!symlinkSync.calledOnce)
@@ -88,7 +90,7 @@ describe('Installer', () => {
     })
 
     it('calls fs.renameSync() when not already saved', done => {
-      const installer = new Installer('./test/fixtures/directories/a')
+      const installer = new Installer(`${basePath}/a`)
 
       installer.install()
       assert(renameSync.calledOnce)
@@ -97,7 +99,7 @@ describe('Installer', () => {
     })
 
     it('does not call fs.renameSync() when already saved', done => {
-      const installer = new Installer('./test/fixtures/directories/c')
+      const installer = new Installer(`${basePath}/a`)
 
       installer.install()
       assert(!renameSync.calledOnce)
