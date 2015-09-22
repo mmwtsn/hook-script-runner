@@ -19,7 +19,7 @@ describe('Installer', () => {
 
   describe('#symlinked', () => {
     it('is true when hooks/ is a symlink', done => {
-      const installer = new Installer(`${basePath}/c`)
+      const installer = new Installer(`${basePath}/symlinked`)
 
       assert(installer.symlinked)
 
@@ -27,7 +27,7 @@ describe('Installer', () => {
     })
 
     it('is false when hooks/ is not a symlink', done => {
-      const installer = new Installer(`${basePath}/a`)
+      const installer = new Installer(`${basePath}/default`)
 
       assert(!installer.symlinked)
 
@@ -37,7 +37,7 @@ describe('Installer', () => {
 
   describe('#saved', () => {
     it('is true when hooks.save/ exists', done => {
-      const installer = new Installer(`${basePath}/a`)
+      const installer = new Installer(`${basePath}/saved`)
 
       assert(installer.saved)
 
@@ -45,7 +45,7 @@ describe('Installer', () => {
     })
 
     it('is false when hooks.save/ does not', done => {
-      const installer = new Installer(`${basePath}/a`)
+      const installer = new Installer(`${basePath}/default`)
 
       assert(!installer.saved)
 
@@ -72,7 +72,7 @@ describe('Installer', () => {
     })
 
     it('calls fs.symlinkSync() when not already symlinked', done => {
-      const installer = new Installer(`${basePath}/a`)
+      const installer = new Installer(`${basePath}/default`)
 
       installer.install()
       assert(symlinkSync.calledOnce)
@@ -81,7 +81,7 @@ describe('Installer', () => {
     })
 
     it('does not call fs.symlinkSync() when already symlinked', done => {
-      const installer = new Installer(`${basePath}/c`)
+      const installer = new Installer(`${basePath}/symlinked`)
 
       installer.install()
       assert(!symlinkSync.calledOnce)
@@ -90,7 +90,7 @@ describe('Installer', () => {
     })
 
     it('calls fs.renameSync() when not already saved', done => {
-      const installer = new Installer(`${basePath}/a`)
+      const installer = new Installer(`${basePath}/default`)
 
       installer.install()
       assert(renameSync.calledOnce)
@@ -99,7 +99,7 @@ describe('Installer', () => {
     })
 
     it('does not call fs.renameSync() when already saved', done => {
-      const installer = new Installer(`${basePath}/a`)
+      const installer = new Installer(`${basePath}/saved`)
 
       installer.install()
       assert(!renameSync.calledOnce)
