@@ -1,6 +1,8 @@
-/* global describe, it */
+/* global afterEach, beforeEach, describe, it */
 
 import assert from 'assert'
+import fs from 'fs'
+import sinon from 'sinon'
 import Installer from '../src/Installer'
 
 describe('Installer', () => {
@@ -50,9 +52,57 @@ describe('Installer', () => {
   })
 
   describe('#install', () => {
-    it('calls fs.symlinkSync() when not already symlinked')
-    it('does not call fs.symlinkSync() when already symlinked')
-    it('calls fs.renameSync() when not already saved or symlinked')
-    it('does not call fs.renameSync() when already saved or symlinked')
+    let symlinkSync
+    let renameSync
+
+    beforeEach(done => {
+      symlinkSync = sinon.stub(fs, 'symlinkSync')
+      renameSync = sinon.stub(fs, 'renameSync')
+
+      done()
+    })
+
+    afterEach(done => {
+      fs.symlinkSync.restore()
+      fs.renameSync.restore()
+
+      done()
+    })
+
+    it('calls fs.symlinkSync() when not already symlinked', done => {
+      const installer = new Installer('./test/fixtures/directories/a')
+
+      installer.install()
+      assert(symlinkSync.calledOnce)
+
+      done()
+    })
+
+    it('does not call fs.symlinkSync() when already symlinked', done => {
+      const installer = new Installer('./test/fixtures/directories/c')
+
+      installer.install()
+      assert(!symlinkSync.calledOnce)
+
+      done()
+    })
+
+    it('calls fs.renameSync() when not already saved', done => {
+      const installer = new Installer('./test/fixtures/directories/a')
+
+      installer.install()
+      assert(renameSync.calledOnce)
+
+      done()
+    })
+
+    it('does not call fs.renameSync() when already saved', done => {
+      const installer = new Installer('./test/fixtures/directories/c')
+
+      installer.install()
+      assert(!renameSync.calledOnce)
+
+      done()
+    })
   })
 })

@@ -29,7 +29,15 @@ export default class Installer {
    *
    * @param {string} [path=../lib/hooks] - Path to new hooks directory
    */
-  install (path = '../lib/hooks') {}
+  install (path = '../lib/hooks') {
+    if (!this.symlinked) {
+      fs.symlinkSync('./lib/hooks', path, 'dir')
+    }
+
+    if (!this.saved) {
+      fs.renameSync('../.git/hooks', '../.git/hooks.save')
+    }
+  }
 
   /**
    * Returns installation state of provided $GIT_DIR
