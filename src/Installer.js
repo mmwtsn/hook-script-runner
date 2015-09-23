@@ -4,7 +4,7 @@
 import fs from 'fs'
 
 /**
- * Hook script installer class.
+ * Installer class.
  *
  * @class Installer
  * @classdesc Used to install the Runner's hooks directory locally in a project.

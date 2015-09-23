@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
 /**
- * This file is part of the Hook Runner module.
+ * This file is part of the Hook Script Runner module.
  *
  * It is symlinked to this location from inside that package. For more,
- * see Hook Runner's README inside your project's node_modules/ directory
+ * see the README.md file inside your project's node_modules/ directory
  * or on GitHub:
  *
- * https://github.com/mmwtsn/hook-runner#readme
+ * https://github.com/mmwtsn/hook-script-runner#readme
  */
-var Runner = require('hook-runner')
+var Runner = require('hook-script-runner')
 
 new Runner(__filename).run()

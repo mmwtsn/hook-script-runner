@@ -1,5 +1,5 @@
 {
-  "name": "hook-script-manager",
+  "name": "hook-script-runner",
   "version": "0.0.0",
   "description": "Manage your Git hook scripts with npm",
   "license": "MIT",
@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/attn/hook-manager.git"
+    "url": "git+ssh://git@github.com/attn/hook-script-runner.git"
   },
   "bugs": {
-    "url": "https://github.com/attn/hook-manager/issues"
+    "url": "https://github.com/attn/hook-script-runner/issues"
   },
-  "homepage": "https://github.com/attn/hook-manager#readme",
+  "homepage": "https://github.com/attn/hook-script-runner#readme",
   "main": "lib/Runner.js",
   "scripts": {
     "prepublish": "babel src --out-dir lib",

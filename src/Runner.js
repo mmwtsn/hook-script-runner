@@ -6,7 +6,7 @@ import {spawn} from 'child_process'
 import hooks from './hooks'
 
 /**
- * Hook script runner class.
+ * Runner class.
  *
  * @class Runner
  * @classdesc Automatically runs a specified hook script once instantiated from
