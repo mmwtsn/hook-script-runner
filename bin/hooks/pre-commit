@@ -9,7 +9,6 @@
  *
  * https://github.com/mmwtsn/hook-runner#readme
  */
-
 var Runner = require('hook-runner')
 
 new Runner(__filename).run()

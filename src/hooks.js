@@ -1,12 +1,11 @@
 /**
- * List of all currently hooks recognized by Git v2.5.0
+ * List of all currently hooks recognized by Git v2.5.0.
  *
  * See `git hooks --help` for full documentation.
  *
  * @module src/hooks
  * @type {string[]}
  */
-
 export default [
   'applypatch-msg',
   'pre-applypatch',
