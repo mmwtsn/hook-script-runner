@@ -46,10 +46,6 @@ describe('Runner', () => {
     }, SyntaxError)
 
     assert.throws(() => {
-      return new Runner(hook, './test/fixtures/configs/missing-hook.json')
-    }, /missing/)
-
-    assert.throws(() => {
       return new Runner(hook, './test/fixtures/configs/missing-hooks.json')
     }, /missing/)
 

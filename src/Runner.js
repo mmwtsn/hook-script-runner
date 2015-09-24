@@ -86,10 +86,6 @@ export default class Runner {
       throw new Error(`Expected "hooks" key missing from config`)
     }
 
-    if (parsed.hooks[hook] === undefined) {
-      throw new Error(`Expected "hooks[\'${hook}\']" key missing from config`)
-    }
-
     return parsed.hooks[hook]
   }
 }
