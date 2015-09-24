@@ -11,4 +11,4 @@
  */
 var Runner = require('hook-script-runner')
 
-new Runner(__filename).run()
+new Runner('pre-commit').run()
