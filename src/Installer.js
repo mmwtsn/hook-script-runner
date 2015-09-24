@@ -33,7 +33,9 @@ export default class Installer {
     }
 
     if (!this.symlinked) {
-      fs.symlinkSync('../bin/hooks', path, 'dir')
+      fs.symlinkSync(
+        '../node_modules/hook-script-runner/bin/hooks', path, 'dir'
+      )
     }
   }
 
