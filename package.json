@@ -17,6 +17,7 @@
   "homepage": "https://github.com/attn/hook-script-runner#readme",
   "main": "lib/Runner.js",
   "scripts": {
+    "postinstall": "./bin/install",
     "prepublish": "babel src --out-dir lib",
     "pretest": "standard src",
     "test": "mocha"
