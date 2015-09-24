@@ -26,6 +26,8 @@ export default class Installer {
    * backing up your existing $GIT_DIR/hooks directory if it exists.
    *
    * @param {string} [path=../lib/hooks] - Path to new hooks directory.
+   * @todo Handle case where hooks.save does not exist but it cannot be saved
+   * (either beause hooks/ is a symlink or because it does not exist).
    */
   install (path = '../../.git/hooks') {
     if (!this.saved) {
