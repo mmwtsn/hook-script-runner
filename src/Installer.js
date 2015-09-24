@@ -29,7 +29,7 @@ export default class Installer {
    */
   install (path = '../../.git/hooks') {
     if (!this.saved) {
-      fs.renameSync(path, `${path}.save}`)
+      fs.renameSync(path, `${path}.save`)
     }
 
     if (!this.symlinked) {
