@@ -16,7 +16,7 @@ export default class Installer {
    * @param {string} [path=../../package.json] - Path to $GIT_DIR.
    * @constructs Installer
    */
-  constructor (path = '../.git') {
+  constructor (path = '../../.git') {
     this.symlinked = this._inspect(`${path}/hooks`, 'isSymbolicLink')
     this.saved = this._inspect(`${path}/hooks.save`, 'isDirectory')
   }
