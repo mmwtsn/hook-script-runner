@@ -20,7 +20,7 @@ export default class Runner {
    * @param {string} [config=../../package.json] - Path to target JSON config.
    * @constructs Runner
    */
-  constructor (hook, config = '../../package.json') {
+  constructor (hook, config = './package.json') {
     this.hook = this._validate(hook)
     this.targets = this._parse(config)
   }
