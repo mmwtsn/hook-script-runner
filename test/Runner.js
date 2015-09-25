@@ -36,22 +36,6 @@ describe('Runner', () => {
     done()
   })
 
-  it('validates its config when provided', done => {
-    assert.throws(() => {
-      return new Runner(hook, 'does-not-exist.json')
-    }, /no such file/)
-
-    assert.throws(() => {
-      return new Runner(hook, './test/Runner.js')
-    }, SyntaxError)
-
-    assert.throws(() => {
-      return new Runner(hook, './test/fixtures/configs/missing-hooks.json')
-    }, /missing/)
-
-    done()
-  })
-
   describe('#hook', () => {
     it('holds the target hook script name', done => {
       const runner = new Runner(hook, config)
@@ -67,6 +51,30 @@ describe('Runner', () => {
       const runner = new Runner(hook, config)
 
       assert.strictEqual(runner.hook, hook)
+
+      done()
+    })
+
+    it('is false when package.json cannot be found', done => {
+      const runner = new Runner(hook, './does-not-exist.json')
+
+      assert.strictEqual(runner.targets, false)
+
+      done()
+    })
+
+    it('is false when hooks key cannot be found', done => {
+      const runner = new Runner(hook, './fixtures/configs/missing-hooks.json')
+
+      assert.strictEqual(runner.targets, false)
+
+      done()
+    })
+
+    it('is false when hooks key is empty', done => {
+      const runner = new Runner('update', './fixtures/configs/empty-hooks.json')
+
+      assert.strictEqual(runner.targets, false)
 
       done()
     })

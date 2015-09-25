@@ -71,21 +71,17 @@ export default class Runner {
    *
    * @method _parse
    * @param {string} config - JSON config file to parse.
-   * @throws {Error} Thrown if config is malformed.
-   * @throws {Error} Thrown if config file does not exist.
-   * @throws {SyntaxError} Thrown if config is not valid JSON.
    * @returns {string[]} Commands to be parsed to child_process.spawn().
    * @protected
    */
   _parse (config) {
-    const hook = this.hook
-    const file = fs.readFileSync(config, 'utf8')
-    const parsed = JSON.parse(file)
+    try {
+      const file = fs.readFileSync(config, 'utf8')
+      const parsed = JSON.parse(file)
 
-    if (parsed.hooks === undefined) {
-      throw new Error(`Expected "hooks" key missing from config`)
+      return parsed.hooks[this.hook]
+    } catch (err) {
+      return false
     }
-
-    return parsed.hooks[hook]
   }
 }
