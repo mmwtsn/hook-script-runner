@@ -64,7 +64,7 @@ describe('Runner', () => {
     })
 
     it('is false when hooks key cannot be found', done => {
-      const runner = new Runner(hook, './fixtures/configs/missing-hooks.json')
+      const runner = new Runner(hook, './test/fixtures/configs/missing-hooks.json')
 
       assert.strictEqual(runner.targets, false)
 
@@ -72,7 +72,7 @@ describe('Runner', () => {
     })
 
     it('is false when hooks key is empty', done => {
-      const runner = new Runner('update', './fixtures/configs/empty-hooks.json')
+      const runner = new Runner('update', './test/fixtures/configs/empty-hooks.json')
 
       assert.strictEqual(runner.targets, false)
 
