@@ -40,13 +40,13 @@ describe('Runner', () => {
     it('holds the target hook script name', done => {
       const runner = new Runner(hook, config)
 
-      assert.deepEqual(runner.targets, ['npm', ['test', '-s']])
+      assert.deepEqual(runner.commands, ['npm', ['test', '-s']])
 
       done()
     })
   })
 
-  describe('#targets', () => {
+  describe('#commands', () => {
     it('hold the parsed target hook script executables', done => {
       const runner = new Runner(hook, config)
 
@@ -58,7 +58,7 @@ describe('Runner', () => {
     it('is false when package.json cannot be found', done => {
       const runner = new Runner(hook, './does-not-exist.json')
 
-      assert.strictEqual(runner.targets, false)
+      assert.strictEqual(runner.commands, false)
 
       done()
     })
@@ -66,7 +66,7 @@ describe('Runner', () => {
     it('is false when hooks key cannot be found', done => {
       const runner = new Runner(hook, './test/fixtures/configs/missing-hooks.json')
 
-      assert.strictEqual(runner.targets, false)
+      assert.strictEqual(runner.commands, false)
 
       done()
     })
@@ -74,7 +74,7 @@ describe('Runner', () => {
     it('is false when hooks key is empty', done => {
       const runner = new Runner('update', './test/fixtures/configs/empty-hooks.json')
 
-      assert.strictEqual(runner.targets, false)
+      assert.strictEqual(runner.commands, false)
 
       done()
     })
