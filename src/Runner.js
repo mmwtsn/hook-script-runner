@@ -78,9 +78,9 @@ export default class Runner {
     try {
       const file = fs.readFileSync(config, 'utf8')
       const parsed = JSON.parse(file)
-      const commands = parsed.hooks[this.hook]
+      const commands = parsed.hooks[this.hook].split(' ')
 
-      return commands ? commands : false
+      return [commands.shift(), commands]
     } catch (err) {
       return false
     }
