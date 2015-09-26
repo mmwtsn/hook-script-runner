@@ -70,7 +70,33 @@ export default class Runner {
   }
 
   /**
-   * Parses default or provided JSON config for hooks.
+   * Parses a JSON file for a command or list of commands intended for a given
+   * Git hook and returns them in the array in the child_process.spawn() format.
+   *
+   * @example
+   *
+   * // JSON config samples with "pre-commit" hook commands
+   *
+   * const single = {
+   *   "hooks": {
+   *     "pre-commit": "npm test -s"
+   *   }
+   * }
+   *
+   * const double = {
+   *   "hooks": {
+   *     "pre-commit": [
+   *       "npm test -s",
+   *       "npm run lint"
+   *     ]
+   *   }
+   * }
+   *
+   * _parse(single)
+   * // => [ "npm", [ "test", "-s" ] ]
+   *
+   * _parse(double)
+   * // => [ [ "npm", [ "test", "-s" ], [ "npm", [ "run", "lint" ] ] ]
    *
    * @method _parse
    * @param {string} config - JSON config file to parse.
