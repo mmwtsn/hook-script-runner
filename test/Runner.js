@@ -6,7 +6,8 @@ import sinon from 'sinon'
 import Runner from '../src/Runner'
 
 const hook = 'pre-commit'
-const config = './test/fixtures/configs/package.json'
+const basePath = './test/fixtures/configs'
+const config = `${basePath}/package.json`
 
 describe('Runner', () => {
   it('is a class', done => {
@@ -60,7 +61,7 @@ describe('Runner', () => {
     })
 
     it('can hold multiple executable command', done => {
-      const runner = new Runner(hook, './test/fixtures/configs/multiple-commands.json')
+      const runner = new Runner(hook, `${basePath}/multiple-commands.json`)
 
       const commands = [
         [ 'npm', [ 'test', '-s' ] ],
@@ -82,7 +83,7 @@ describe('Runner', () => {
     })
 
     it('is false when hooks key cannot be found', done => {
-      const runner = new Runner(hook, './test/fixtures/configs/missing-hooks.json')
+      const runner = new Runner(hook, `${basePath}/missing-hooks.json`)
 
       assert.strictEqual(runner.commands, false)
 
@@ -90,7 +91,7 @@ describe('Runner', () => {
     })
 
     it('is false when hooks key is empty', done => {
-      const runner = new Runner('update', './test/fixtures/configs/empty-hooks.json')
+      const runner = new Runner('update', `${basePath}/empty-hooks.json`)
 
       assert.strictEqual(runner.commands, false)
 
