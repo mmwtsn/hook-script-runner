@@ -26,8 +26,7 @@ export default class Runner {
   }
 
   /**
-   * Asynchronously runs "npm test -s" when this Runner's hook script is called
-   * by Git by spawning a child process.
+   * Asynchronously runs this runner's command as a child process.
    *
    * Parent process shares readable and writable stream objects with the child
    * process to preserve child process' STDOUT formatting.
@@ -40,9 +39,13 @@ export default class Runner {
    * @public
    */
   run () {
-    spawn('npm', ['test', '-s'], {
-      stdio: [process.stdin, process.stdout, process.stderr]
-    })
+    const cmd = this.commands
+
+    if (cmd) {
+      spawn(cmd[0], cmd[1], {
+        stdio: [process.stdin, process.stdout, process.stderr]
+      })
+    }
   }
 
   /**
