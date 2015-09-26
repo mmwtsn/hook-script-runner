@@ -80,10 +80,16 @@ export default class Runner {
   _parse (config) {
     try {
       const file = fs.readFileSync(config, 'utf8')
-      const parsed = JSON.parse(file)
-      const commands = parsed.hooks[this.hook].split(' ')
+      const commands = JSON.parse(file).hooks[this.hook]
+      const array = Array.isArray(commands) ? commands : [commands]
 
-      return [commands.shift(), commands]
+      // create a new array of reformatted commands
+      return array.map(current => {
+        let command = current.split(' ')
+
+        // remove the first string and pass remainder of the array
+        return [command.shift(), command]
+      })
     } catch (err) {
       return false
     }

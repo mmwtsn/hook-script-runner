@@ -1,0 +1,9 @@
+{
+  "hooks": {
+    "pre-commit": [
+      "npm test -s",
+      "npm run lint:js -s",
+      "npm run lint:spaces -s"
+    ]
+  }
+}

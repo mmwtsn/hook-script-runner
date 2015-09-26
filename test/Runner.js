@@ -47,10 +47,28 @@ describe('Runner', () => {
   })
 
   describe('#commands', () => {
-    it('hold the parsed target hook script executables', done => {
+    it('can hold a single executable command', done => {
       const runner = new Runner(hook, config)
 
-      assert.deepEqual(runner.commands, ['npm', ['test', '-s']])
+      const commands = [
+        [ 'npm', [ 'test', '-s' ] ]
+      ]
+
+      assert.deepEqual(runner.commands, commands)
+
+      done()
+    })
+
+    it('can hold multiple executable command', done => {
+      const runner = new Runner(hook, './test/fixtures/configs/multiple-commands.json')
+
+      const commands = [
+        [ 'npm', [ 'test', '-s' ] ],
+        [ 'npm', [ 'run', 'lint:js', '-s' ] ],
+        [ 'npm', [ 'run', 'lint:spaces', '-s' ] ]
+      ]
+
+      assert.deepEqual(runner.commands, commands)
 
       done()
     })
