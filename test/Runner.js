@@ -7,7 +7,7 @@ import Runner from '../src/Runner'
 
 const hook = 'pre-commit'
 const basePath = './test/fixtures/configs'
-const config = `${basePath}/package.json`
+const config = `${basePath}/single-command.json`
 
 describe('Runner', () => {
   it('is a class', done => {
