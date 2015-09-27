@@ -3,7 +3,7 @@
 import assert from 'assert'
 import fs from 'fs'
 import sinon from 'sinon'
-import Installer from '../src/Installer'
+import Installer from '../../src/Installer'
 
 const basePath = './test/fixtures/directories'
 
