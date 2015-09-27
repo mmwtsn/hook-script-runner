@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+/**
+ * This file is part of the Hook Script Runner module.
+ *
+ * It is symlinked to this location from inside that package. For more,
+ * see the README.md file inside your project's node_modules/ directory
+ * or on GitHub:
+ *
+ * https://github.com/mmwtsn/hook-script-runner#readme
+ */
+var Runner = require('hook-script-runner')
+
+new Runner('post-merge').run()
