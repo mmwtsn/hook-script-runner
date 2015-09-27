@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+/**
+ * Build script.
+ *
+ * Creates a directory of hook scripts. This file is an ES5 wrapper around
+ * lib/build.js to avoid transpiling this executable.
+ */
+require('../lib/build')()
