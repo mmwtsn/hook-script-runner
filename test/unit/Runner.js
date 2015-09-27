@@ -101,7 +101,7 @@ describe('Runner', () => {
 
   describe('#run', () => {
     it('calls child_process.spawn once', done => {
-      const stub = sinon.stub(child_process, 'spawn')
+      const stub = sinon.stub(child_process, 'spawnSync')
       const runner = new Runner(hook, config)
 
       runner.run()
