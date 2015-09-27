@@ -29,6 +29,16 @@ describe('build', () => {
 
     assert.strictEqual(hooks.length, files.length)
 
+    files.forEach(hook => {
+      fs.readFile(hook, (err, data) => {
+        if (err) throw new Error(err)
+
+        assert(data.match('#!/usr/bin/env node'))
+        assert(data.match("var Runner = require('hook-script-runner')"))
+        assert(data.match("new Runner('${hook}').run()"))
+      })
+    })
+
     done()
   })
 })
