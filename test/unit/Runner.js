@@ -106,6 +106,7 @@ describe('Runner', () => {
 
       runner.run()
       assert(stub.calledOnce)
+      assert(!stub.calledTwice)
 
       done()
     })
