@@ -2,13 +2,67 @@
 
 [![wercker status](https://app.wercker.com/status/2c20ed5abd8847ec2455caae4c690aab/s/master "wercker status")](https://app.wercker.com/project/bykey/2c20ed5abd8847ec2455caae4c690aab)
 
-Automatically run your Git hook scripts.
+Automatically run your Git hook scripts with npm.
 
 ## Quick start
+
+Install the Hook Script Runner module in an existing project:
 
 ```shell
 $ npm install --save-dev hook-script-runner
 ```
+
+Add some commands to your package.json file:
+
+```
+{
+  "hooks": {
+    "commit-msg": "echo 'What would Tim Pope do?'",
+    "pre-commit": [
+      "npm test -s",
+      "npm run lint -s"
+    ]
+  }
+}
+```
+
+These can be anything you want so long as it's executable inside your curent
+environment. Each hook name will accept either a string or an array of strings.
+If multiple commands are provided they will be run in order.
+
+You can test your setup by either triggering a Git event (e.g. authoring a
+commit in the above example) or simply by running them as they're just
+executables after all:
+
+```
+$ ./.git/hooks/commit-msg
+What would Tim Pope do?
+```
+
+Good question.
+
+## Uninstalling
+
+During the installation process your project's local `.git/hooks/` directory is
+backed up to `.git/hooks.save/` and symlinked to a directory provided by this
+module.
+
+To uninstall:
+
+1. Remove the module:
+
+  ```
+  rm -rf node_modules/hook-script-runner
+  ```
+
+1. Reset your local Git directory:
+
+  ```
+  rm .git/hooks # Delete the symlink
+  mv .git/hooks.save .git/hooks # Restore the original hooks directory
+  ```
+
+1. Clean up your package.json file if you added anything.
 
 ## License
 
