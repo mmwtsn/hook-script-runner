@@ -26,7 +26,8 @@ export default class Runner {
   }
 
   /**
-   * Synchronously runs this runner's commands as a child process.
+   * Synchronously runs this runner's commands as a child process. If more than
+   * one command is provided they will be run in the order that they are given.
    *
    * Parent process shares readable and writable stream objects with the child
    * process to preserve child process' STDOUT formatting.
@@ -39,11 +40,13 @@ export default class Runner {
    * @public
    */
   run () {
-    const cmd = this.commands
+    const commands = this.commands
 
-    if (cmd) {
-      spawnSync(cmd[0], cmd[1], {
-        stdio: [process.stdin, process.stdout, process.stderr]
+    if (commands) {
+      commands.forEach(cmd => {
+        spawnSync(cmd[0], cmd[1], {
+          stdio: [process.stdin, process.stdout, process.stderr]
+        })
       })
     }
   }

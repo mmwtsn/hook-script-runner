@@ -1,4 +1,4 @@
-/* global describe, it */
+/* global afterEach, beforeEach, describe, it */
 
 import assert from 'assert'
 import child_process from 'child_process'
@@ -100,15 +100,41 @@ describe('Runner', () => {
   })
 
   describe('#run', () => {
-    it('calls child_process.spawn once', done => {
-      const stub = sinon.stub(child_process, 'spawnSync')
-      const runner = new Runner(hook, config)
+    describe('calls child_process.spawn', () => {
+      let spawnSync
 
-      runner.run()
-      assert(stub.calledOnce)
-      assert(!stub.calledTwice)
+      beforeEach(done => {
+        spawnSync = sinon.stub(child_process, 'spawnSync')
 
-      done()
+        done()
+      })
+
+      afterEach(done => {
+        child_process.spawnSync.restore()
+
+        done()
+      })
+
+      it('only once for one command', done => {
+        const runner = new Runner(hook, config)
+
+        runner.run()
+
+        assert(spawnSync.calledOnce)
+        assert(!spawnSync.calledTwice)
+
+        done()
+      })
+
+      it('multiple times for multiple commands', done => {
+        const runner = new Runner(hook, `${basePath}/multiple-commands.json`)
+
+        runner.run()
+
+        assert(spawnSync.calledThrice)
+
+        done()
+      })
     })
   })
 })
