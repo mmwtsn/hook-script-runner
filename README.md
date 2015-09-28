@@ -41,6 +41,25 @@ What would Tim Pope do?
 
 Good question.
 
+## Disabling hooks
+
+The following hooks can be disabled by passing the `--no-verify` option to
+`git commit`:
+
+- commit-msg
+- pre-commit
+
+## Additional resources
+
+For a list of all available hooks and a detailed description of each see Git's
+documentation [online](http://git-scm.com/docs/githooks) or off: `man githooks`.
+
+For a more in-depth look at the hook system, check out these articles:
+
+- [Chapter 8.3, Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks), Pro Git
+- [Git Hooks](https://www.atlassian.com/git/tutorials/git-hooks), Atlassian Tutorials
+- [How To Use Git Hooks To Automate Development and Deployment Tasks](https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks), Digital Ocean Community
+
 ## Uninstalling
 
 During the installation process your project's local `.git/hooks/` directory is
