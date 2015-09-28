@@ -2,7 +2,7 @@
 
 [![wercker status](https://app.wercker.com/status/2c20ed5abd8847ec2455caae4c690aab/s/master "wercker status")](https://app.wercker.com/project/bykey/2c20ed5abd8847ec2455caae4c690aab)
 
-Automatically run your Git hook scripts with npm.
+Install once, run everywhere.
 
 ## Quick start
 
