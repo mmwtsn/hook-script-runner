@@ -49,25 +49,6 @@ The following hooks can be disabled by passing the `--no-verify` option to
 - commit-msg
 - pre-commit
 
-## Additional resources
-
-For a list of all available hooks and a detailed description of each see Git's
-documentation [online](http://git-scm.com/docs/githooks) or off: `man githooks`.
-
-For a more in-depth look at the hook system, check out these articles:
-
-- Pro Git
-
-  [Chapter 8.3, Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
-
-- Atlassian Tutorials
-
-  [Git Hooks](https://www.atlassian.com/git/tutorials/git-hooks)
-
-- Digital Ocean Community
-
-  [How To Use Git Hooks To Automate Development and Deployment Tasks](https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks)
-
 ## Uninstalling
 
 During the installation process your project's local `.git/hooks/` directory is
@@ -90,6 +71,25 @@ To uninstall:
   ```
 
 1. Clean up your package.json file if you added anything.
+
+## Additional resources
+
+For a list of all available hooks and a detailed description of each see Git's
+documentation [online](http://git-scm.com/docs/githooks) or off: `man githooks`.
+
+For a more in-depth look at the hook system, check out these articles:
+
+- Pro Git
+
+  [Chapter 8.3, Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
+
+- Atlassian Tutorials
+
+  [Git Hooks](https://www.atlassian.com/git/tutorials/git-hooks)
+
+- Digital Ocean Community
+
+  [How To Use Git Hooks To Automate Development and Deployment Tasks](https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks)
 
 ## License
 
