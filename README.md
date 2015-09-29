@@ -91,6 +91,17 @@ For a more in-depth look at the hook system, check out these articles:
 
   [How To Use Git Hooks To Automate Development and Deployment Tasks](https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks)
 
+## Local development
+
+To get started you'll need at least Node.js v0.12.x.
+
+There's an outstanding issue with npm calling the "preinstall" script on
+`npm install`. You'll want to bypass scripts on install:
+
+```
+$ npm install --ignore-scripts
+```
+
 ## License
 
 MIT
