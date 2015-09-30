@@ -1,10 +1,22 @@
 #!/usr/bin/env node
 
 /**
+ * Module dependencies.
+ */
+var path = require('path')
+
+/**
+ * Name of parent directory.
+ */
+var parent = path.parse(__filename).dir.split(path.sep).pop()
+
+/**
  * Install script.
  *
  * Run by npm as the post-install step. This file is an ES5 wrapper around
- * lib/Install.js to avoid transpiling this executable.
+ * lib/Install.js to avoid transpiling this executable. Not run in dev.
  */
-var Installer = require('../lib/Installer')
-new Installer().install()
+if (parent === 'lib') {
+  var Installer = require('../lib/Installer')
+  new Installer().install()
+}
